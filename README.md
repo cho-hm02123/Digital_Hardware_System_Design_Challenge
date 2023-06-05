@@ -1,1 +1,1 @@
-# Digital_Hardware_System_Design_Challenge
+# Digital Hardware System Design Challenge
