@@ -27,6 +27,20 @@ module door_control(
     output reg [0:0] JA
 );
 
+    /* 100 MHz Clock on Board  -> transfer to time : 10 ns
+     20 ms Counter -> Output 20 ms using the Counter 
+     Then 20 ms = 20,000,000 ns 
+     20,000,000 ns / 10 ns = 2,000,000  -> 21bit required
+     Therefore, Counter needs 21 bits [20:0]
+     So Count up 0 to 1,999,999
+     
+     We use SG-90 180 Degree Servo So,
+     Assumed Max (180 Deg) 2 ms                   = clks * 10 ns -> clks = 200,000
+     Assumed Min (0   Deg) 1 ms                   = clks * 10 ns -> clks = 100,000
+     Positions 200,000 - 100,000                 = 100,000       -> Consist of 10,000 Position From 0 ~ 180 Deg
+     ReSolution (180 Deg) / (100,000 (Positions))    = 0.0018 Degree
+*/
+    
     // Setting Counter
     reg [20:0] counter;
     reg servo_reg;
