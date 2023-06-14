@@ -1,0 +1,98 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: dankook univ
+// Engineer: 
+// 
+// Create Date: 2023/06/11 16:54:13
+// Design Name: 
+// Module Name: door_control
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module door_control(
+    input clk,
+    input door_open,
+    input [3:0] present_floar,
+    input [3:0] set_floar,
+    input [0:0] block_open,
+    output reg [3:0] JC
+);
+
+    // Setting Counter
+    reg [20:0] counter;
+    reg [1:0] servo_state;
+    reg [16:0] control = 0;
+    reg toggle = 1;
+    
+    always @(posedge clk) begin
+        if(door_open == 1 && block_open == 0)
+            begin
+                counter <= counter + 1;
+                if(counter == 'd999999)
+                    counter <= 0;
+                if(counter < ('d100000 + control)) begin
+                    if(present_floar == 4'b0001)
+                        JC <= 4'b0001;
+                    else if(present_floar == 4'b0010)
+                        JC <= 4'b0010;
+                    else if(present_floar == 4'b0011)
+                        JC <= 4'b0100;
+                    else if(present_floar == 4'b0100)
+                        JC <= 4'b1000;
+                    end   
+                else
+                    JC <= 0;
+                    
+                if(control == 'd100000)
+                    toggle <= 0;
+//                if(control == 0)
+//                    toggle <= 1;
+                if(counter == 0)
+                    begin
+                        if(toggle == 1)
+                            control <= control + 500;
+                    end
+            end
+ 
+         
+        if(block_open == 1)
+            begin
+                counter <= counter + 1;
+                if(counter == 'd999999)
+                    counter <= 0;
+                if(counter < ('d100000 + control))begin
+                    if(present_floar == 4'b0001)
+                        JC <= 4'b0001;
+                    else if(present_floar == 4'b0010)
+                        JC <= 4'b0010;
+                    else if(present_floar == 4'b0011)
+                        JC <= 4'b0100;
+                    else if(present_floar == 4'b0100)
+                        JC <= 4'b1000;
+                    end
+                else
+                    JC <= 0;
+                    
+                if(control == 'd100000)
+                    toggle <= 0;
+                if(control == 0)
+                    toggle <= 1;
+                if(counter == 0)
+                    begin
+                        if(toggle == 0)
+                            control <= control - 500;
+                    end
+            end
+        end
+endmodule
