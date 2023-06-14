@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company: Dankook Univ.
-// Engineer: Kim Hyunwook, Kim soomin
+// Engineer: Kim Hyunwook, Kim sumin
 // 
 // Create Date: 2023/06/14
 // Design Name: 
@@ -17,7 +17,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module e(clk, open_btn, close_btn, seg, an, JA, JB, JC);
+module elevator(clk, open_btn, close_btn, seg, an, JA, JB, JC);
 
 input clk;
 input [0:0] open_btn, close_btn;
