@@ -23,7 +23,6 @@
 module door_control(
     input clk,
     input btnL,btnR,
-    output reg [0:0] led,
     output reg [0:0] JA
 );
 
@@ -46,32 +45,32 @@ module door_control(
     reg servo_reg;
     reg [1:0] servo_state;
     reg [16:0] control = 0;
-    reg toggle = 1;
+    reg toggle = 1;                                         // Determinig the Direction (Clockwise, Counterclockwise)
     
     always @(posedge clk) begin
-        if(btnL == 1)
+        if(btnL == 1)                                       // Open the door
             begin
-                counter <= counter + 1;
-                if(counter == 'd999999)
+                counter <= counter + 1;                     // Increase the servo angle while increasing the counter
+                if(counter == 'd999999)                     // Cause 999,999 is Maximum, reset counter
                     counter <= 0;
-                if(counter < ('d100000 + control))
+                if(counter < ('d100000 + control))          // Adjust the duty ratio of the PWM
                     JA[0] <= 1;
                 else
                     JA[0] <= 0;
                     
-                if(control == 'd100000)
-                    toggle <= 0;
-//                if(control == 0)
-//                    toggle <= 1;
+                if(control == 'd100000)                     // Use toggle to control direction
+                    toggle <= 0;                            // Clockwise relative to the line facing down
+                if(control == 0)
+                    toggle <= 1;                            // Counterclockwise with respect to the line facing down
                 if(counter == 0)
                     begin
                         if(toggle == 1)
-                            control <= control + 500;
+                            control <= control + 500;       // Use control to control speed
                     end
             end
          
-        if(btnR == 1)
-            begin
+        if(btnR == 1)                                       // Close the door
+            begin                                           // he same as above
                 counter <= counter + 1;
                 if(counter == 'd999999)
                     counter <= 0;
