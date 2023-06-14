@@ -52,15 +52,15 @@ module door_control(
                         JC <= 4'b1000;                      //4층 문 서보모터 작동
                     end   
                 else
-                    JC <= 0;
+                    JC <= 0;                                //Servo Motor가 90Deg만 회전하도록 PWM 조정
                     
-                if(control == 'd100000)
+                if(control == 'd100000)                     //toggle을 이용하여 Servo Motor의 회전 방향을 결정
                     toggle <= 0;
 
                 if(counter == 0)
                     begin
                         if(toggle == 1)
-                            control <= control + 500;
+                            control <= control + 500;        //control을 이용하여 Servo의 속도를 조정
                     end
             end
  
@@ -81,16 +81,16 @@ module door_control(
                         JC <= 4'b1000;                      //4층 문 서보모터 작동
                     end
                 else
-                    JC <= 0;
+                    JC <= 0;                                //Servo Motor가 90Deg만 회전하도록 PWM 조정
                     
-                if(control == 'd100000)
+                if(control == 'd100000)                     //toggle을 이용하여 Servo Motor의 회전 방향을 결정
                     toggle <= 0;
                 if(control == 0)
                     toggle <= 1;
                 if(counter == 0)
                     begin
                         if(toggle == 0)
-                            control <= control - 500;
+                            control <= control - 500;        //control을 이용하여 Servo의 속도를 조정
                     end
             end
         end
