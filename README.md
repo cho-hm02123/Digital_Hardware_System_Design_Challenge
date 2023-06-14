@@ -13,3 +13,11 @@ The elevator's input includes two open buttons and two closed buttons that contr
 This elevator can receive aks keypad input when the open button is pressed, and keypad input is not possible when the closed button is pressed.
 If you press the open button, the servo motor operates to open the elevator door, and if you press the close button after setting the floor, the servo motor operates in reverse to close the elevator door, and then operates the DC motor to move to the desired floor.
 
+#### Role
+
+김수민, 김현욱 : Control Algorithm, Pmod Keypad and Segment
+이호성 : Main motor control and H/W fabrication
+조혜민 : Door motor control and H/W fabrication
+
+##### End.. 
+The project was produced for the final project of digital hardware system design by Dankook University's Department of Electronic and Electrical Engineering.
