@@ -16,6 +16,7 @@ If you press the open button, the servo motor operates to open the elevator door
 #### Role
 
 김수민, 김현욱 : Control Algorithm, Pmod Keypad and Segment
+
 이호성 : Main motor control and H/W fabrication
 조혜민 : Door motor control and H/W fabrication
 
