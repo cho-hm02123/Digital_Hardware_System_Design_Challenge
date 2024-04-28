@@ -23,3 +23,5 @@ If you press the open button, the servo motor operates to open the elevator door
 
 ##### End.. 
 The project was produced for the final project of digital hardware system design by Dankook University's Department of Electronic and Electrical Engineering.
+
+##### Youtube Link : https://youtube.com/shorts/fVZLpNnAG6Q?si=0hnm6JTwO_BXhm4N
